@@ -1,8 +1,8 @@
 from random import randint
 
 class Tabuleiro:
-    def __init__(self):
-        self.tamanho = 6
+    def __init__(self, tamanho):
+        self.tamanho = tamanho
         self.matriz = [[0] * self.tamanho for _ in range(self.tamanho)]
         self.satelites = []
         self.tentativas = []
