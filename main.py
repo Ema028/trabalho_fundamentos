@@ -3,9 +3,10 @@ from jogador import Jogador
 from bot import Bot
 
 satelites = 4
-tabuleiro1 = Tabuleiro()
+tamanho = 6
+tabuleiro1 = Tabuleiro(tamanho)
 tabuleiro1.gerar_satelites(satelites)
-tabuleiro2 = Tabuleiro()
+tabuleiro2 = Tabuleiro(tamanho)
 tabuleiro2.gerar_satelites(satelites)
 jogador1 = Jogador()
 
