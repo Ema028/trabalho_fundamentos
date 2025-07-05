@@ -42,7 +42,6 @@ def main():
 
 def jogada_jogador(jogador, tabuleiro):
         tentativa = jogador.human_try(tabuleiro)
-
         tabuleiro.check_try(tentativa[0], tentativa[1])
 
 def print_matriz(tabuleiro):
@@ -53,7 +52,7 @@ def print_matriz(tabuleiro):
 
 def jogada_bot(bot, jogadas_sucesso):
     if (jogadas_sucesso % 2 == 0):
-        tentativa = bot.robot_try()
+        tentativa = bot.robot_try(tabuleiro2)
     else:
         tentativa = bot.robot_next_try(tabuleiro2)
 
