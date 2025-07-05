@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, shuffle
 
 class Tabuleiro:
     def __init__(self, tamanho):
@@ -10,7 +10,7 @@ class Tabuleiro:
 
     def gerar_satelites(self, number):
         #index para vizinhos dos satélites escolhidos para satélites de 2 espaços
-        vizinhos_index = [(-1, 0), (-1, -1), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+        vizinhos_index = [(-1, 0), (0, -1), (0, 1), (1, 0)]
         while (len(self.satelites) < 2 * number):
             sat_linha = randint(0, self.tamanho - 1)
             sat_coluna = randint(0, self.tamanho - 1)
@@ -22,7 +22,8 @@ class Tabuleiro:
                 continue
             while True:
                 vizinho = 0
-                while (vizinho < 7):
+                shuffle(vizinhos_index)
+                while (vizinho < len(vizinhos_index) - 1):
                     if (self.in_bounds(sat_linha + vizinhos_index[vizinho][0]) and self.in_bounds(sat_coluna + vizinhos_index[vizinho][1])):
                         break
                     vizinho += 1
@@ -38,6 +39,7 @@ class Tabuleiro:
         if ((x, y) in self.satelites):
             print("satélite derrubado")
             self.matriz[x][y] = -1
+            self.derrubados += 1
             self.satelites.remove((x, y))
         else:
             print("não foi dessa vez")
@@ -49,7 +51,6 @@ class Tabuleiro:
             for j in range(self.tamanho):
                 if (self.matriz[i][j] == -1):
                     matriz_oculta[i][j] = 'X'
-                    self.derrubados += 1
                 if (i, j) in self.tentativas:
                     matriz_oculta[i][j] = '.'
         return matriz_oculta
